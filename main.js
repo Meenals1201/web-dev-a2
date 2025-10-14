@@ -1,5 +1,7 @@
 console.log("let's do this")
 
+
+
 const siteVisitorData = [
   { month: "April", visitors: 1000 },
   { month: "May", visitors: 1340 },
@@ -8,6 +10,8 @@ const siteVisitorData = [
   { month: "August", visitors: 3468 },
   { month: "September", visitors: 5300 }
 ];
+
+
 
 // console.log(siteVisitorData[1].month)
 // console.log(siteVisitorData[2].visitors)
@@ -27,7 +31,7 @@ const siteVisitorData = [
 
 ////note for myslef:creating a loop to change any info in the main data in future
 
-let table = "<table border='1'><tr><th>Month</th><th>Number of Visitors</th></tr>"
+let table = "<table border='1' class= 'myTable'><tr><th>Month</th><th>Number of Visitors</th></tr>"
 
 for (let i = 0; i < siteVisitorData.length; i++) {
   table += `<tr><td>${siteVisitorData[i].month}</td><td>${siteVisitorData[i].visitors}</td></tr>`;
@@ -40,6 +44,11 @@ const div = document.querySelector("div");
 div.innerHTML = table;
 
 //note for myself: div.innerHTML retreives data from the table if I do the other way round, it will take data from div which is empty, also innerHTML can ony be used if the element is inside the original html file, not created by js
+//__________________________________________________________________________________________________________________
+
+
+
+
 
 const footer = document.querySelector(".cookiesFooter");
 
@@ -98,6 +107,10 @@ if (event.target && event.target.id === "revokeCookies"){
   }
 
 })
+//__________________________________________________________________________________________________________________________
+
+
+
 
 const readingBtn = document.createElement("button");
 readingBtn.textContent = "Toggle High-Contrast Mode for better reading experience";
@@ -106,9 +119,91 @@ readingBtn.id = "readingAssistBtn";
 const section = document.querySelector(".readingSect");
 section.appendChild(readingBtn);
 
+//note: adding event listerner to change colors and adding off button with a similar event to bring back default reading mode
+
+readingBtn.addEventListener("click", function(){
+  document.body.style.backgroundColor = "black";
+  document.body.style.color = "beige";
+  document.body.style.lineHeight = "2.0";
+  document.body.style.letterSpacing = "0.05em";
+  document.body.style.padding = "20px";
+
+  //removing what's there and add new button
+
+  readingBtn.style.display = "none";
+  
+  //adding button to turn off reading mde
+  const readingOffBtn = document.createElement("button");
+  readingOffBtn.textContent = "Turn High-Contrast OFF";
+  readingOffBtn.id = "readingAssistOffBtn";
+
+  section.appendChild(readingOffBtn);
+
+  readingOffBtn.addEventListener("click", function(){
+    document.body.style.backgroundColor = "";
+    document.body.style.color = "";
+    document.body.style.lineHeight = "";
+    document.body.style.letterSpacing = "";
+    document.body.style.padding = "";
+
+    readingOffBtn.remove();
+
+    readingBtn.style.display = "inline-block";
+
+  })
 
 
+})
 
+//___________________________________________________________________________________________________________________________
+
+//for the shortcut
+
+// document.addEventListener("keydown", function(event){
+//   if(event.ctrlKey && event.key === "a"){
+//     event.preventDefault();
+//     //note to myse;f: imp to add, otherwise it will select all
+
+//     document.body.style.backgroundColor = "";
+//     document.body.style.color = "";
+//     document.body.style.lineHeight = "";
+//     document.body.style.letterSpacing = "";
+//     document.body.style.padding = "";
+
+
+//   }else{
+//     document.body.style.backgroundColor = "black";
+//     document.body.style.color = "beige";
+//     document.body.style.lineHeight = "2.0";
+//     document.body.style.letterSpacing = "0.05em";
+//     document.body.style.padding = "20px";
+
+//   }
+
+// })
+// };
+
+document.addEventListener("keydown", function(event) {
+  if (event.ctrlKey && event.key === "a") {
+    event.preventDefault(); 
+
+    if (document.body.style.backgroundColor === "black") {
+    
+      document.body.style.backgroundColor = "";
+      document.body.style.color = "";
+      document.body.style.lineHeight = "";
+      document.body.style.letterSpacing = "";
+      document.body.style.padding = "";
+    } else {
+     
+      document.body.style.backgroundColor = "black";
+      document.body.style.color = "beige";
+      document.body.style.lineHeight = "2.0";
+      document.body.style.letterSpacing = "0.05em";
+      document.body.style.padding = "20px";
+    }
+  }
+});
 
 
 

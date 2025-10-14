@@ -1,0 +1,14 @@
+.myTable {
+ 
+  line-height: 2.0;
+  letter-spacing: 0.05em;
+  padding: 20px;
+  border-collapse: collapse;
+  border-width: 3px;
+}
+
+.myTable th,
+.myTable td {
+  border: 3px solid grey;
+  padding: 10px;
+}
