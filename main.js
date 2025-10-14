@@ -46,7 +46,68 @@ const footer = document.querySelector(".cookiesFooter");
 const cookiesNote = document.createElement("p")
 cookiesNote.textContent = `This site uses cookies to improve your experience.`
 
+//<a href="#" id="acceptCookies">Accept Cookies</a>
+const linkToAcceptCookies = document.createElement("a")
+linkToAcceptCookies.href = "#"
+linkToAcceptCookies.id ="acceptCookies"
+linkToAcceptCookies.textContent = "Accept Cookies"
+
 footer.appendChild(cookiesNote);
+footer.appendChild(linkToAcceptCookies);
+
+//note for myself: add event listener on click (on the accept cookies link)...should show "Cookies were accepted. Would you like to revoke?"
+
+document.addEventListener("click", function(event){
+if (event.target && event.target.id === "acceptCookies"){
+
+  footer.innerHTML = ""
+//note for myself: removes what is already there changing it to my cokies acccepted message
+
+ const myCookiesText = document.createElement("p");
+  myCookiesText.textContent = "Cookies has been accepted! Would you like to change your preferences?";
+
+//note: now adding my link to revoke
+  const revokeLink = document.createElement("a");
+    revokeLink.href = "#";
+    revokeLink.id = "revokeCookies";
+    revokeLink.textContent = "Change Cookie Preferences";
+
+    footer.appendChild(myCookiesText);
+    footer.appendChild(revokeLink);
+
+  }
+
+//note: adding same pattern from rovoke to accept cookies text by removing default event
+
+if (event.target && event.target.id === "revokeCookies"){
+  event.preventDefault();
+
+  footer.innerHTML = ""
+
+  const revokeCookiesText = document.createElement("p")
+  revokeCookiesText.textContent = "This site uses cookies to improve your experience."
+
+  const acceptLink = document.createElement("a");
+    acceptLink.href = "#";
+    acceptLink.id = "acceptCookies";
+    acceptLink.textContent = "Accept Cookies";
+
+    footer.appendChild(revokeCookiesText);
+    footer.appendChild(acceptLink);
+
+  }
+
+})
+
+const readingBtn = document.createElement("button");
+readingBtn.textContent = "Toggle High-Contrast Mode for better reading experience";
+readingBtn.id = "readingAssistBtn";
+
+const section = document.querySelector(".readingSect");
+section.appendChild(readingBtn);
+
+
+
 
 
 
